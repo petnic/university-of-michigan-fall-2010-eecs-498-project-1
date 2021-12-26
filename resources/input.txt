@@ -1,4 +1,3 @@
-Term,Session,Acad Group,Class Nbr,Subject,Catalog Nbr,Section,Course Title,Component,Codes,M,T,W,TH,F,S,SU,Time,Location,Instructor,
 "Fall 2010","Regular Academic Session","Architecture & Urban Planning","10001","Architecture (ARCH)"," 201","001","Basic Drawing","LAB","P  W","M","","W","","","","","1130-230PM","1227 A&AB","Tierman, Broderick, Smith",
 "Fall 2010","Regular Academic Session","Architecture & Urban Planning","10003","Architecture (ARCH)"," 202","001","Graphic Commun","LAB","P  W","M","","W","","","","","11-2PM","B100 MLB","Quinn, Alcorn",
 "Fall 2010","Regular Academic Session","Architecture & Urban Planning","10065","Architecture (ARCH)"," 211","001","CAD Fundamentals","LEC","P RW","M","","","","","","","1230-2PM","2104 A&AB","Bard, Tomova, Riikonen",

@@ -1,147 +1,109 @@
-String[] file;
-ArrayList guide;
-int count = 0;
+class Course {
+  String term, session, group, number, subject, catalog, section, title, component, codes;
+  boolean M, T, W, TH, F, S, SU;
+  int startHour, startMinutes, endHour, endMinutes; 
+  String time, location, instructor;
 
-class course {
-  String term;
-  String session;
-  String group;
-  String classNumber;
-  String subject;
-  String catalogNumber;
-  String section;
-  String title;
-  String codes;
-  String monday;
-  String tuesday;
-  String wednesday;
-  String thursday;
-  String friday;
-  String saturday;
-  String sunday;
-  String time;
-  String location;
-  String instructor;  
+  void loadCourse(String input) {
+    String[] parameters = split(input, "\",");
+    for(int i = 0; i < parameters.length; i++) {
+      if(parameters[i].length() >= 1) {
+        int end = parameters[i].length();
+        parameters[i] = trim(parameters[i].substring(1, end));
+      }
+    }
+     
+    term = parameters[0];
+    session = parameters[1];
+    group = parameters[2];
+    number = parameters[3];
+    subject = parameters[4];
+    catalog = parameters[5];
+    section = parameters[6];
+    title = parameters[7];
+    component = parameters[8];
+    codes = parameters[9];
+    
+    //Days
+    M = 0;
+    T = 0;
+    W = 0;
+    TH = 0;
+    F = 0;
+    S = 0;
+    SU = 0;
+    
+    if(parameters[10].length() > 0) {
+      M = 1;
+    }
+    if(parameters[11].length() > 0) {
+      T = 1;
+    }
+    if(parameters[12].length() > 0) {
+      W = 1;
+    }
+    if(parameters[13].length() > 0) {
+      TH = 1;
+    }
+    if(parameters[14].length() > 0) {
+      F = 1;
+    }
+    if(parameters[15].length() > 0) {
+      S = 1;
+    }
+    if(parameters[16].length() > 0) {
+      SU = 1;
+    }
+    
+    //Time
+    
+    time = parameters[17];
+    location = parameters[18];
+    instructor = parameters[19];
+  }
   
-  course() {
-    term = "";
-    session = "";
-    group = "";
-    classNumber = "";
-    subject = "";
-    catalogNumber = "";
-    section = "";
-    title = "";
-    codes = "";
-    monday = "";
-    tuesday = "";
-    wednesday = "";
-    thursday = "";
-    friday = "";
-    saturday = "";
-    sunday = "";
-    time = "";
-    location = "";
-    instructor = "";
+  String saveCourse() {
+    String seperator = ";";
+    return returnParameters(seperator);
+  }
+  
+  void printCourse() {
+    String seperator = " ";
+    println(returnParameters(seperator));
+  }
+  
+  String returnParameters(String seperator) {
+    String output = (term + seperator + session + seperator + group + seperator + number + seperator + subject + seperator + catalog + seperator + 
+                    section + seperator + title + seperator + component + seperator + codes + seperator + time + seperator + location + seperator + instructor);
+    return output; 
   }
 }
 
 void setup() {
-  importFile();
-  
-  for(int i = 1; i < file.length; i++) {
-    String[] coursevar = split(trim(file[i]), "\",");
-    
-    course coursetemp = new course();
-    for(int j = 0; j < coursevar.length; j++) {
-      
-      if(coursevar[j].length() >= 2) {
-        String parameter = coursevar[j].substring(1, coursevar[j].length());
-        parameter = trim(parameter);
-     
-        switch(j) {
-          case 0:
-            coursetemp.term = parameter;
-            break;
-          case 1:
-            coursetemp.session = parameter;
-            break;
-          case 2:
-            coursetemp.group = parameter;
-            break;
-          case 3:
-            coursetemp.classNumber = parameter;
-            break;
-          case 4:
-            coursetemp.subject = parameter;
-            break;
-          case 5:
-            coursetemp.catalogNumber = parameter;
-            break;
-          case 6:
-            coursetemp.section = parameter;
-            break;
-          case 7:
-            coursetemp.title = parameter;
-            break;
-          case 8:
-            coursetemp.codes = parameter;
-            break;
-          case 9:
-            coursetemp.monday = parameter;
-            break;
-          case 10:
-            coursetemp.tuesday = parameter;
-            break;
-          case 11:
-            coursetemp.wednesday = parameter;
-            break;
-          case 12:
-            coursetemp.thursday = parameter;
-            break;
-          case 13:
-            coursetemp.friday = parameter;
-            break;
-          case 14:
-            coursetemp.saturday = parameter;
-            break;
-          case 15:
-            coursetemp.sunday = parameter;
-            break;
-          case 16:
-            coursetemp.time = parameter;
-            break;
-          case 17:
-            coursetemp.location = parameter;
-            break;
-          case 18:
-            coursetemp.instructor = parameter;
-            break;
-          default:
-            break; 
-        }
-      }
-    }
-
-    guide.add(coursetemp);
-    count++;
+  //Input
+  String input[] = loadStrings("resources/input.txt");
+  Course courses[] = new Course[input.length];
+  for (int i = 0; i < courses.length; i++) {
+    courses[i] = new Course();
+    courses[i].loadCourse(input[i]);
   }
   
-  for(int i = 0; i < guide.size(); i++) {
-    course temp = (course)guide.get(i);
-    println(temp.title);
+  //Output
+  /*
+  String output[] = new String[courses.length];
+  for(int i = 0; i < courses.length; i++) {
+    output[i] = new String();
+    output[i] = courses[i].saveCourse();
   }
+  saveStrings("resources/output.txt", output);
+  */
+  
+  //Draw
+  size(1280, 720); 
+  background(25);
+  frameRate(30);
 }
 
 void draw() {
-  
-}
 
-void importFile() {
-  file = loadStrings("/resources/all.txt");
 }
-
-void exportFile() {
- println(file); 
-}
-
