@@ -36,11 +36,13 @@ class Index {
 
 class Course {
 
-  String term, session, group, number, subject, catalog, section, title, component, codes;
+  String term, session, group, number, subject, section, title, component, codes;
+  int catalog;
   boolean M, T, W, TH, F, S, SU;
   int startHour, startMinute, endHour, endMinute; 
   String location, instructor;
-
+  String building;
+  
   void loadCourse(String input) {
     String[] parameters = split(input, "\",");
     for(int i = 0; i < parameters.length; i++) {
@@ -55,7 +57,13 @@ class Course {
     group = parameters[2];
     number = parameters[3];
     subject = parameters[4];
-    catalog = parameters[5];
+    
+    //Catalog
+    catalog = 0;
+    catalog = catalog + ((parameters[5].charAt(0) - 48) * 100);
+    catalog = catalog + ((parameters[5].charAt(1) - 48) * 10);
+    catalog = catalog + ((parameters[5].charAt(2) - 48) * 1);
+    
     section = parameters[6];
     title = parameters[7];
     component = parameters[8];
@@ -191,7 +199,11 @@ class Course {
     }
     endHour = endHour + offsetTime;
 
+    //Building
     location = parameters[18];
+    String locationParameters[] = split(location, " ");
+    building = locationParameters[locationParameters.length - 1];
+   
     instructor = parameters[19];
   }
   

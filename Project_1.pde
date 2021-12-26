@@ -1,7 +1,7 @@
 //Global
 Calendar calendar;
 Course courses[];
-int now[];
+Index now[];
 
 //Setup
 void setup() {
@@ -74,6 +74,19 @@ void setup() {
     }
   }
     
+  //Sort
+//  println("Start");
+//  Sort mySort = new Sort();
+//  now = new Index[calendar.days[1].timeslots[22].indices.size()];
+//  
+//  calendar.days[1].timeslots[22].indices.toArray(now);
+//  
+//  println(now.length);
+//  
+//  println("Middle");
+//  mySort.titleSort();
+//  println("Stop");
+  
   //Draw
   size(1280, 720); 
   background(25);
